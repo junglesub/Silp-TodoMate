@@ -5,7 +5,7 @@ import java.util.Date;
 public class BoardVO {
 	
 	private int seq;
-	private String category, title, writer, content;
+	private String category = "default", title, writer, content;
 	private Date regdate;
 	private int cnt;
 	
