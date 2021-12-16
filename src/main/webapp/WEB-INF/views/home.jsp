@@ -28,7 +28,7 @@
 		<input class="form-control" id="project-code" placeholder="프로젝트 코드" />
 	</div>
 	<button type="button" class="btn btn-secondary">프로젝트 생성</button>
-	<button type="button" class="btn btn-primary">프로젝트 입장</button>
+	<a href="./proj/abcdefg" role="button" class="btn btn-primary">프로젝트 입장</a>
 
 </div>
 </body>
