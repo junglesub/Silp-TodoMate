@@ -6,7 +6,7 @@ name: Deploy Java WAR package to Heroku
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [junglesub-cicd]
+    branches: [main]
 
 env:
   JAVA_VERSION: "1.8"
