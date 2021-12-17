@@ -17,6 +17,30 @@
 		}
 		.center-text {
 			text-align: center;
+			font-weight: bold;
+		}
+		.form-control::placeholder {
+			color: #C6C6C6;
+		}
+		.btn-secondary {
+			border: 1px solid #000080;
+			background-color: white;
+			color: #000080;
+			cursor: pointer;
+		}
+		.btn-secondary:hover {
+			border: 1px solid grey;
+			background-color: grey;
+			color: white;
+		}
+		.btn-primary {
+			border: 1px solid #000080;
+			background-color: #000080;
+		}
+		.btn-primary:hover {
+			border: 1px solid grey;
+			background-color: grey;
+			color: white;
 		}
 	</style>
 </head>
@@ -27,7 +51,7 @@
 		<input class="form-control" id="name" placeholder="이름" autocomplete="off" />
 		<input class="form-control" id="project-code" placeholder="프로젝트 코드" />
 	</div>
-	<button type="button" class="btn btn-secondary">프로젝트 생성</button>
+	<a href="./newproj" role="button" class="btn btn-secondary">프로젝트 생성</a>
 	<a href="./proj/abcdefg" role="button" class="btn btn-primary">프로젝트 입장</a>
 
 </div>

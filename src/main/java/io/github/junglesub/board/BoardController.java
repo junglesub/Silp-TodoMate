@@ -37,7 +37,7 @@ public class BoardController {
 	@RequestMapping(value = "/addok", method = RequestMethod.POST)
 	public String addPostOK(BoardVO vo) {
 		if(boardService.insertBoard(vo) == 0)
-			System.out.println("ë°ì´í„° ì¶”ê°€ ì‹¤íŒ¨");
+			System.out.println("µ¥ÀÌÅÍ Ãß°¡ ½ÇÆĞ");
 		return "redirect:list";
 	}
 
@@ -51,18 +51,18 @@ public class BoardController {
 	@RequestMapping(value = "/editok", method = RequestMethod.POST)
 	public String editPostOkl(BoardVO vo) {
 		if (boardService.updateBoard(vo) == 0)
-			System.out.println("ë°ì´í„° ìˆ˜ì • ì‹¤íŒ¨");
+			System.out.println("µ¥ÀÌÅÍ ¼öÁ¤ ½ÇÆĞ");
 		else
-			System.out.println("ë°ì´í„° ìˆ˜ì • ì„±ê³µ!!!");
+			System.out.println("µ¥ÀÌÅÍ ¼öÁ¤ ¼º°ø!!!");
 		return "redirect:list";
 	}
 
 	@RequestMapping(value = "/deleteok/{id}", method = RequestMethod.GET)
 	public String deletePostOk(@PathVariable("id") int id) {
 		if (boardService.deleteBoard(id) == 0)
-			System.out.println("ë°ì´í„° ì‚­ì œ ì‹¤íŒ¨");
+			System.out.println("µ¥ÀÌÅÍ »èÁ¦ ½ÇÆĞ");
 		else
-			System.out.println("ë°ì´í„° ì‚­ì œ ì„±ê³µ!!");
+			System.out.println("µ¥ÀÌÅÍ »èÁ¦ ¼º°ø!!!");
 		return "redirect:../list";
 	}
 
