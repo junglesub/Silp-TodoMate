@@ -6,9 +6,9 @@ name: Build and Deploy
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [main]
-    paths:
-      - "src/**"
+    branches: [main, cicd2]
+    # paths:
+    #   - "src/**"
 
 env:
   JAVA_VERSION: "1.8"
