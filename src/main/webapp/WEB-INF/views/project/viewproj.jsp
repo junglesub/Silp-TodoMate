@@ -1,9 +1,9 @@
-<%@page import="io.github.junglesub.project.ProjectVO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%
-ProjectVO p = (ProjectVO) request.getAttribute("p");
-%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> <%@page
+import="java.util.List"%> <%@page
+import="io.github.junglesub.objective.ObjectiveVO"%> <%@page
+import="io.github.junglesub.project.ProjectVO"%> <%@ page language="java"
+contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <% ProjectVO p =
+(ProjectVO) request.getAttribute("p"); %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -188,71 +188,41 @@ ProjectVO p = (ProjectVO) request.getAttribute("p");
         </div>
         <div class="body">
           <div class="entries">
-            <div class="entry-item">
-              <div class="objective">
-                <div class="objective-name">오브젝티브 이름</div>
-                <div class="extra-info">
-                  <div class="holdername">김</div>
-                  <div class="badge text-dark" style="background-color: aqua">
-                    Label1
+            <c:forEach items="${p.getObjectives()}" var="obj">
+              <div class="entry-item">
+                <div class="objective">
+                  <div class="objective-name">${obj.getOtitle()}</div>
+                  <div class="extra-info">
+                    <div class="holdername">
+                      ${ obj.getAssignee().charAt(0) }
+                    </div>
+                    <div class="badge bg-ligh text-dark">
+                      ${ obj.getLabel() }
+                    </div>
+                    <!-- <div class="completed">2/4</div> -->
                   </div>
-                  <div class="completed">2/4</div>
+                </div>
+                <div class="key-results">
+                  <ul class="list-group-flush">
+                    <c:forEach items="${obj.getKeyResults()}" var="kresult">
+                      <li class="list-group-item">
+                        <input
+                          class="form-check-input me-1"
+                          type="checkbox"
+                          value=""
+                          aria-label="..."
+                          <c:if test="${kresult.getBCompleted()}">checked="checked"</c:if>
+                        />
+                        ${kresult.getKtitle()}
+                      </li>
+                    </c:forEach>
+                  </ul>
                 </div>
               </div>
-              <div class="key-results">
-                <ul class="list-group-flush">
-                  <li class="list-group-item">
-                    <input
-                      class="form-check-input me-1"
-                      type="checkbox"
-                      value=""
-                      aria-label="..."
-                    />
-                    First checkbox
-                  </li>
-                  <li class="list-group-item">
-                    <input
-                      class="form-check-input me-1"
-                      type="checkbox"
-                      value=""
-                      aria-label="..."
-                    />
-                    Second checkbox
-                  </li>
-                  <li class="list-group-item">
-                    <input
-                      class="form-check-input me-1"
-                      type="checkbox"
-                      value=""
-                      aria-label="..."
-                    />
-                    Third checkbox
-                  </li>
-                  <li class="list-group-item">
-                    <input
-                      class="form-check-input me-1"
-                      type="checkbox"
-                      value=""
-                      aria-label="..."
-                    />
-                    Fourth checkbox
-                  </li>
-                  <li class="list-group-item">
-                    <input
-                      class="form-check-input me-1"
-                      type="checkbox"
-                      value=""
-                      aria-label="..."
-                    />
-                    Fifth checkbox
-                  </li>
-                </ul>
-              </div>
-            </div>
+            </c:forEach>
           </div>
         </div>
       </div>
     </div>
   </body>
 </html>
-
