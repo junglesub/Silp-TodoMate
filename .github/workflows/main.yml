@@ -36,9 +36,9 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           source: "silp-todomate.war"
-          target: "/opt/tomcat/webapps"
+          target: "~"
           overwrite: true
-          tar_tmp_path: "~"
+          # tar_tmp_path: "~"
 
       # - name: Login to Heroku
       #   uses: akhileshns/heroku-deploy@v3.12.12
