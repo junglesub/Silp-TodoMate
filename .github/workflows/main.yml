@@ -47,5 +47,5 @@ jobs:
       #     justlogin: true
       # - name: Install Java Plugin
       #   run: heroku plugins:install java
-      - name: Deploy WAR
+      # - name: Deploy WAR
       # run: heroku war:deploy target/*.war --app todomate
