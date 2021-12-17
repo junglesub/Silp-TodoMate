@@ -25,9 +25,10 @@ jobs:
           java-version: ${{ env.JAVA_VERSION }}
       - name: Build with Maven
         run: mvn package --file pom.xml
-      # - name: "Deploy to Heroku"
-      #   uses: akhileshns/heroku-deploy@v3.12.12
-      #   with:
-      #     heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-      #     heroku_app_name: "todomate"
-      #     heroku_email: "22000462@handong.edu"
+      - name: "Deploy to Heroku"
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "todomate"
+          heroku_email: "22000462@handong.edu"
+      - run: heroku auth:whoami target/*.war war:deploy --app todomate
