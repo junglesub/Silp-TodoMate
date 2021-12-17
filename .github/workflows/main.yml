@@ -30,7 +30,10 @@ jobs:
       - name: Rename WAR
         run: mv target/*.war silp-todomate.war
       - name: Create Private Key File
-        run: echo "${{secrets.KEY}}" > key
+        run: 'echo "$SSH_KEY" > key'
+        shell: bash
+        env:
+          SSH_KEY: ${{secrets.KEY}}
       - name: Upload WAR to remote Server
         run: "scp -i key silp-todomate.war ${{ secrets.USERNAME }}@todomate.handong.us:/opt/tomcat/webapps/silp-todomate.war"
 
