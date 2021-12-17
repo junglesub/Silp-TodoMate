@@ -1,4 +1,4 @@
-package io.github.junglesub.project;
+package io.github.junglesub.controller;
 
 import java.util.Locale;
 
@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import io.github.junglesub.board.BoardService;
 import io.github.junglesub.board.BoardVO;
+import io.github.junglesub.project.ProjectService;
+import io.github.junglesub.project.ProjectVO;
 
 /**
  * Handles requests for the application home page.
@@ -22,12 +24,15 @@ import io.github.junglesub.board.BoardVO;
 public class ProjectController {
 
 	@Autowired
-	BoardService boardService;
+	ProjectService projectService;
 
 	private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String mainpage(@PathVariable String id, Model model) {
+		ProjectVO projectVO = projectService.getProject(id);
+		
+		model.addAttribute("p", projectVO);
 		
 //		model.addAttribute("list", boardService.getBoardList());
 		return "project/viewproj";

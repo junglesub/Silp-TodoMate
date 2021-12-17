@@ -1,5 +1,9 @@
+<%@page import="io.github.junglesub.project.ProjectVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+ProjectVO p = (ProjectVO) request.getAttribute("p");
+%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -171,7 +175,7 @@
       <div class="content">
         <div class="top">
           <div class="top-left">
-            <h1>프로젝트 이름</h1>
+            <h1><%=p.getTitle() %></h1>
             <button type="button" class="btn btn-outline-secondary">
               설정
             </button>
