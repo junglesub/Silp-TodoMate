@@ -27,14 +27,24 @@ jobs:
           java-version: ${{ env.JAVA_VERSION }}
       - name: Build with Maven
         run: mvn package --file pom.xml
-      - name: Login to Heroku
-        uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "todomate"
-          heroku_email: "22000462@handong.edu"
-          justlogin: true
-      - name: Install Java Plugin
-        run: heroku plugins:install java
+      - name: Rename WAR
+        run: mv target/*.war silp-todomate.war
       - name: Deploy WAR
-        run: heroku war:deploy target/*.war --app todomate
+        uses: appleboy/scp-action@master
+        with:
+          host: todomate.handong.us
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          source: "silp-todomate.war"
+          target: "/opt/tomcat/webapps"
+
+      # - name: Login to Heroku
+      #   uses: akhileshns/heroku-deploy@v3.12.12
+      #   with:
+      #     heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+      #     heroku_app_name: "todomate"
+      #     heroku_email: "22000462@handong.edu"
+      #     justlogin: true
+      # - name: Install Java Plugin
+      #   run: heroku plugins:install java
+      # run: heroku war:deploy target/*.war --app todomate
