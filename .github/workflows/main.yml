@@ -6,10 +6,10 @@ name: Deploy Java WAR package to Heroku
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ junglesub-cicd ]
-    
+    branches: [junglesub-cicd]
+
 env:
-  JAVA_VERSION: '1.8'
+  JAVA_VERSION: "1.8"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -18,35 +18,16 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
     steps:
-#       - uses: actions/checkout@master
-#       - name: Set up JDK 1.8
-#         uses: action/setup-java@v1
-#         with:
-#           java-version: ${{ env.JAVA_VERSION }}
-#       - name: Build with Maven
-#         run: mvn package --file pom.xml
-      - name: 'Deploy to Heroku'
+      #       - uses: actions/checkout@master
+      #       - name: Set up JDK 1.8
+      #         uses: action/setup-java@v1
+      #         with:
+      #           java-version: ${{ env.JAVA_VERSION }}
+      #       - name: Build with Maven
+      #         run: mvn package --file pom.xml
+      - name: "Deploy to Heroku"
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "todomate"
           heroku_email: "22000462@handong.edu"
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
