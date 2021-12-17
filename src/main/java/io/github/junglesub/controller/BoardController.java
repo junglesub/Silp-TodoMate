@@ -1,4 +1,4 @@
-package io.github.junglesub.board;
+package io.github.junglesub.controller;
 
 import java.util.Locale;
 
@@ -10,6 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import io.github.junglesub.board.BoardService;
+import io.github.junglesub.board.BoardVO;
 
 /**
  * Handles requests for the application home page.
@@ -37,7 +40,7 @@ public class BoardController {
 	@RequestMapping(value = "/addok", method = RequestMethod.POST)
 	public String addPostOK(BoardVO vo) {
 		if(boardService.insertBoard(vo) == 0)
-			System.out.println("µ¥ÀÌÅÍ Ãß°¡ ½ÇÆÐ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		return "redirect:list";
 	}
 
@@ -51,18 +54,18 @@ public class BoardController {
 	@RequestMapping(value = "/editok", method = RequestMethod.POST)
 	public String editPostOkl(BoardVO vo) {
 		if (boardService.updateBoard(vo) == 0)
-			System.out.println("µ¥ÀÌÅÍ ¼öÁ¤ ½ÇÆÐ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		else
-			System.out.println("µ¥ÀÌÅÍ ¼öÁ¤ ¼º°ø!!!");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!!");
 		return "redirect:list";
 	}
 
 	@RequestMapping(value = "/deleteok/{id}", method = RequestMethod.GET)
 	public String deletePostOk(@PathVariable("id") int id) {
 		if (boardService.deleteBoard(id) == 0)
-			System.out.println("µ¥ÀÌÅÍ »èÁ¦ ½ÇÆÐ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		else
-			System.out.println("µ¥ÀÌÅÍ »èÁ¦ ¼º°ø!!!");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!!");
 		return "redirect:../list";
 	}
 

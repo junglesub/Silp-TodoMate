@@ -1,4 +1,4 @@
-package io.github.junglesub;
+package io.github.junglesub.controller;
 
 import java.text.DateFormat;
 import java.util.Date;

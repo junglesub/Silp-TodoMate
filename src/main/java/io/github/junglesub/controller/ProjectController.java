@@ -1,4 +1,4 @@
-package io.github.junglesub.project;
+package io.github.junglesub.controller;
 
 import java.util.Locale;
 
