@@ -34,14 +34,14 @@ public class ProjectController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String mainpage(@PathVariable String id, Model model) {
 		ProjectVO projectVO = projectService.getProject(id);
+		if(projectVO == null) {
+			throw new ResourceNotFoundException();
+		}
+		
 		projectVO.setObjectives(objectiveService.getObjectsForProject(projectVO.getProjectId()));
 		
 		System.out.println(projectVO.getObjectives());
 //		logger.info(projectVO.getObjectives().toString());
-		
-		if(projectVO == null) {
-			throw new ResourceNotFoundException();
-		}
 		
 		model.addAttribute("p", projectVO);
 		

@@ -1,9 +1,21 @@
 package io.github.junglesub.objective;
 
+import java.util.List;
+
+import io.github.junglesub.keyresult.KeyResultVO;
+
 public class ObjectiveVO {
 	int oid;
 	String projectId, otitle, label, assignee;
 	
+	private List<KeyResultVO> keyResults;
+	
+	public List<KeyResultVO> getKeyResults() {
+		return keyResults;
+	}
+	public void setKeyResults(List<KeyResultVO> keyResults) {
+		this.keyResults = keyResults;
+	}
 	public int getOid() {
 		return oid;
 	}

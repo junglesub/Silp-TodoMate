@@ -6,5 +6,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias alias="board" type="io.github.junglesub.board.BoardVO" />
 		<typeAlias alias="project" type="io.github.junglesub.project.ProjectVO" />
 		<typeAlias alias="objective" type="io.github.junglesub.objective.ObjectiveVO" />
+		<typeAlias alias="keyresult" type="io.github.junglesub.keyresult.KeyResultVO" />
 	</typeAliases>
 </configuration>
