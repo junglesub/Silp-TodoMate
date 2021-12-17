@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import io.github.junglesub.board.BoardService;
 import io.github.junglesub.board.BoardVO;
+import io.github.junglesub.objective.ObjectiveService;
 import io.github.junglesub.project.ProjectService;
 import io.github.junglesub.project.ProjectVO;
 
@@ -25,12 +26,19 @@ public class ProjectController {
 
 	@Autowired
 	ProjectService projectService;
+	
+	@Autowired
+	ObjectiveService objectiveService;
 
 	private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String mainpage(@PathVariable String id, Model model) {
 		ProjectVO projectVO = projectService.getProject(id);
+		projectVO.setObjectives(objectiveService.getObjectsForProject(projectVO.getProjectId()));
+		
+		System.out.println(projectVO.getObjectives());
+//		logger.info(projectVO.getObjectives().toString());
 		
 		model.addAttribute("p", projectVO);
 		
