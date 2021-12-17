@@ -4,5 +4,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration>
 	<typeAliases>
 		<typeAlias alias="board" type="io.github.junglesub.board.BoardVO" />
+		<typeAlias alias="project" type="io.github.junglesub.project.ProjectVO" />
 	</typeAliases>
 </configuration>
