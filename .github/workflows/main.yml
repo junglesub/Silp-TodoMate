@@ -31,4 +31,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "todomate"
           heroku_email: "22000462@handong.edu"
-      - run: heroku auth:whoami target/*.war war:deploy --app todomate
+      - run: heroku war:deploy target/*.war --app todomate
