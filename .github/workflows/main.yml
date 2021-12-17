@@ -35,4 +35,4 @@ jobs:
       - name: Install Java Plugin
         run: heroku plugins:install java
       - name: Deploy WAR
-        run: heroku war:deploy target/*.war
+        run: heroku war:deploy target/*.war --app todomate
