@@ -37,6 +37,8 @@ jobs:
           privateKey: ${{ secrets.KEY }}
           local: "silp-todomate.war"
           remote: "/opt/tomcat/webapps/silp-todomate.war"
+          recursive: false
+          verbose: false
 
       # - name: Login to Heroku
       #   uses: akhileshns/heroku-deploy@v3.12.12
@@ -48,4 +50,4 @@ jobs:
       # - name: Install Java Plugin
       #   run: heroku plugins:install java
       # - name: Deploy WAR
-      # run: heroku war:deploy target/*.war --app todomate
+      #   run: heroku war:deploy target/*.war --app todomate
