@@ -22,28 +22,66 @@
     <style>
       .sidebar {
         width: 250px;
-        height: 100vh;
         padding: 1em;
         background-color: lightgrey;
-        float: left;
       }
 
       .content {
-        max-width: 1000px;
+        flex-grow: 1;
         padding: 1em;
+        overflow-y: scroll;
+        height: 100vh;
       }
+
+      .content > * {
+        max-width: 1000px;
+        margin: auto;
+      }
+
+      .main,
       .top,
-      .top > * {
+      .top > *,
+      .extra-info,
+      .objective {
         display: flex;
       }
 
-      .top {
+      .top,
+      .objective {
         justify-content: space-between;
       }
 
-      .top * {
+      .top *,
+      .extra-info > * {
         align-self: center;
         margin: 0 3px;
+      }
+
+      .objective {
+        border: 2.5px solid black;
+        padding: 0.5em 1em;
+        margin: 1em 1em 0.5em 1em;
+        border-radius: 15px;
+      }
+      .objective-name {
+        font-weight: bold;
+        font-size: 1.5em;
+      }
+      .extra-info {
+        color: #999;
+      }
+      .holdername {
+        border: 1px solid #999;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        text-align: center;
+      }
+      .key-results {
+        margin: 0 1em;
+      }
+      .key-results .list-group-flush {
+        padding-left: 0;
       }
     </style>
   </head>
@@ -144,7 +182,73 @@
             <button type="button" class="btn btn-secondary">로그아웃</button>
           </div>
         </div>
+        <div class="body">
+          <div class="entries">
+            <div class="entry-item">
+              <div class="objective">
+                <div class="objective-name">오브젝티브 이름</div>
+                <div class="extra-info">
+                  <div class="holdername">김</div>
+                  <div class="badge text-dark" style="background-color: aqua">
+                    Label1
+                  </div>
+                  <div class="completed">2/4</div>
+                </div>
+              </div>
+              <div class="key-results">
+                <ul class="list-group-flush">
+                  <li class="list-group-item">
+                    <input
+                      class="form-check-input me-1"
+                      type="checkbox"
+                      value=""
+                      aria-label="..."
+                    />
+                    First checkbox
+                  </li>
+                  <li class="list-group-item">
+                    <input
+                      class="form-check-input me-1"
+                      type="checkbox"
+                      value=""
+                      aria-label="..."
+                    />
+                    Second checkbox
+                  </li>
+                  <li class="list-group-item">
+                    <input
+                      class="form-check-input me-1"
+                      type="checkbox"
+                      value=""
+                      aria-label="..."
+                    />
+                    Third checkbox
+                  </li>
+                  <li class="list-group-item">
+                    <input
+                      class="form-check-input me-1"
+                      type="checkbox"
+                      value=""
+                      aria-label="..."
+                    />
+                    Fourth checkbox
+                  </li>
+                  <li class="list-group-item">
+                    <input
+                      class="form-check-input me-1"
+                      type="checkbox"
+                      value=""
+                      aria-label="..."
+                    />
+                    Fifth checkbox
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
 </html>
+
