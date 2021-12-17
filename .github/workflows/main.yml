@@ -29,14 +29,13 @@ jobs:
         run: mvn package --file pom.xml
       - name: Rename WAR
         run: mv target/*.war silp-todomate.war
-      - name: Deploy WAR
-        uses: appleboy/scp-action@master
-        with:
-          host: todomate.handong.us
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          source: "silp-todomate.war"
-          target: "/opt/tomcat/webapps"
+      - name: Create Private Key File
+        run: 'echo "$SSH_KEY" > key;chmod 400 key'
+        shell: bash
+        env:
+          SSH_KEY: ${{secrets.KEY}}
+      - name: Upload WAR to remote Server
+        run: "scp -i key -oStrictHostKeyChecking=no silp-todomate.war ${{ secrets.USERNAME }}@todomate.handong.us:/opt/tomcat/webapps/silp-todomate.war"
 
       # - name: Login to Heroku
       #   uses: akhileshns/heroku-deploy@v3.12.12
@@ -47,4 +46,5 @@ jobs:
       #     justlogin: true
       # - name: Install Java Plugin
       #   run: heroku plugins:install java
-      # run: heroku war:deploy target/*.war --app todomate
+      # - name: Deploy WAR
+      #   run: heroku war:deploy target/*.war --app todomate
