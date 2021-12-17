@@ -29,16 +29,14 @@ jobs:
         run: mvn package --file pom.xml
       - name: Rename WAR
         run: mv target/*.war silp-todomate.war
-      - name: Deploy WAR
-        uses: appleboy/scp-action@master
+      - name: Copy WAR to remote server
+        uses: garygrossgarten/github-action-scp@release
         with:
           host: todomate.handong.us
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          source: "silp-todomate.war"
-          target: "/home/silp-todomate"
-          overwrite: true
-          # tar_tmp_path: "~"
+          privateKey: ${{ secrets.KEY }}
+          local: "silp-todomate.war"
+          remote: "/home/silp-todomate"
 
       # - name: Login to Heroku
       #   uses: akhileshns/heroku-deploy@v3.12.12
@@ -49,4 +47,5 @@ jobs:
       #     justlogin: true
       # - name: Install Java Plugin
       #   run: heroku plugins:install java
+      - name: Deploy WAR
       # run: heroku war:deploy target/*.war --app todomate
