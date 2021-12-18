@@ -27,6 +27,18 @@ jobs:
           java-version: ${{ env.JAVA_VERSION }}
       - name: Build with Maven
         run: mvn package --file pom.xml
+      - name: Login to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "todomate"
+          heroku_email: "22000462@handong.edu"
+          justlogin: true
+      - name: Install Java Plugin
+        run: heroku plugins:install java
+      - name: Deploy WAR
+        run: heroku war:deploy target/*.war --app todomate
+
       - name: Rename WAR
         run: mv target/*.war silp-todomate.war
       - name: Create Private Key File
@@ -36,15 +48,3 @@ jobs:
           SSH_KEY: ${{secrets.KEY}}
       - name: Upload WAR to remote Server
         run: "scp -i key -oStrictHostKeyChecking=no silp-todomate.war ${{ secrets.USERNAME }}@todomate.handong.us:/opt/tomcat/webapps/silp-todomate.war"
-
-      # - name: Login to Heroku
-      #   uses: akhileshns/heroku-deploy@v3.12.12
-      #   with:
-      #     heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-      #     heroku_app_name: "todomate"
-      #     heroku_email: "22000462@handong.edu"
-      #     justlogin: true
-      # - name: Install Java Plugin
-      #   run: heroku plugins:install java
-      # - name: Deploy WAR
-      #   run: heroku war:deploy target/*.war --app todomate
