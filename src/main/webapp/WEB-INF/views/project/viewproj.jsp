@@ -216,6 +216,29 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <% ProjectVO p =
                         ${kresult.getKtitle()}
                       </li>
                     </c:forEach>
+                    <li class="list-group-item">
+                    <form action="./${ p.getProjectId() }/addkresult" method="post">
+                      <div class="input-group mb-3">
+                      	<input type="hidden" id="objectiveId" name="objectiveId" value="${ obj.getOid() }" />
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="ktitle"
+                          name="ktitle"
+                          placeholder="Key Result"
+                          aria-label="Key Result"
+                          aria-describedby="basic-addon1"
+                        />
+                        <button
+                          class="btn btn-outline-secondary"
+                          type="submit"
+                          id="button-addon1"
+                        >
+                          추가
+                        </button>
+                      </div>
+                    </form>
+                  </li>
                   </ul>
                 </div>
               </div>

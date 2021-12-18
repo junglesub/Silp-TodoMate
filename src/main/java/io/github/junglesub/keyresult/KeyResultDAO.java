@@ -16,5 +16,9 @@ public class KeyResultDAO {
 		List<KeyResultVO> list = sqlSession.selectList("KeyResult.getKeyResultForObj", objectiveId);
 		return list;
 	}
+	
+	public int addKeyResult(KeyResultVO vo) {
+		return sqlSession.insert("KeyResult.createKeyResult", vo);
+	}
 
 }

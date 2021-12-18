@@ -5,6 +5,9 @@
 		insert into BOARD (category, title, writer, content) values
 		(#{category} , #{title} , #{writer} , #{content})
 	</insert> -->
+	<insert id="createKeyResult">
+		insert into TM_keyresults (objectiveId, ktitle) values (#{objectiveId}, #{ktitle})
+	</insert>
 	<select id="getKeyResultForObj" resultType="keyresult">
 		select * from TM_keyresults where objectiveId=#{objectiveId}
 	</select>
