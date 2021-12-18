@@ -5,6 +5,13 @@
 		insert into TM_projects (projectID, title, owner) values
 		(#{projectId} , #{title} , #{owner})
 	</insert>
+	<update id="updateProject">
+		update TM_Project
+		set title=#{title}, owner=#{owner} where projectID=#{projectId}
+  	</update>
+	<delete id="deleteProject">
+		delete from TM_projects where projectId=#{projectID}
+	</delete>
 	<select id="getProject" resultType="project">
 		select * from TM_projects where projectId=#{projectID}
 	</select>
