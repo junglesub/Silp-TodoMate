@@ -23,66 +23,68 @@ import io.github.junglesub.project.ProjectVO;
  */
 @Controller
 public class HomeController {
-	
+
 	@Autowired
 	ProjectService projectService;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-		
+
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
+
 		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
+
+		model.addAttribute("serverTime", formattedDate);
+
 		return "home";
 	}
-	
+
 	@RequestMapping(value = "/newproj", method = RequestMethod.GET)
-	public String addProjectHome() {		
+	public String addProjectHome() {
 		return "addprojectform";
 	}
-	
+
 	@RequestMapping(value = "/newproj/ok", method = RequestMethod.POST)
-	public String addProject(ProjectVO vo) {
+	public String addProject(HttpSession session, ProjectVO vo) {
 		String randomId = "";
-		for (int i=0; i<5; i++) {
+		for (int i = 0; i < 5; i++) {
 			randomId += (char) ((Math.random() * 26) + 97);
 		}
 		System.out.println(randomId);
 		vo.setProjectId(randomId);
 		projectService.createProject(vo);
-		return "redirect:/proj/"+vo.getProjectId();
-	}
-	
-	@RequestMapping(value="/login", method = RequestMethod.POST)
-	public String login(
-			HttpSession session,
-			@RequestParam(required=true) String name,
-			@RequestParam(required=true) String projectcode
-			) {
 		
+		createSession(session, vo.getOwner());
+		return "redirect:/proj/" + vo.getProjectId();
+	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(HttpSession session, @RequestParam(required = true) String name,
+			@RequestParam(required = true) String projectcode) {
+
+		createSession(session, name);
+
+		return "redirect:/proj/" + projectcode;
+	}
+
+	private void createSession(HttpSession session, String name) {
 		// Create user session
-		if(session.getAttribute("loginname") != null) {
+		if (session.getAttribute("loginname") != null) {
 			session.removeAttribute("loginname");
 		}
 		session.setAttribute("loginname", name);
-		
-		return "redirect:/proj/" + projectcode;
+
 	}
-	
-	@RequestMapping(value="/logout", method = RequestMethod.GET)
-	public String logout(
-			HttpSession session
-			) {
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";
 	}
