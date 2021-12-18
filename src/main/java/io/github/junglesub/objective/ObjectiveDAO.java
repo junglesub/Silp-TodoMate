@@ -16,5 +16,9 @@ public class ObjectiveDAO {
 		List<ObjectiveVO> list = sqlSession.selectList("Objective.getObjectProjID", projectID);
 		return list;
 	}
+	
+	public int addObjective(ObjectiveVO vo) {
+		return sqlSession.insert("Objective.addObjective", vo);
+	}
 
 }

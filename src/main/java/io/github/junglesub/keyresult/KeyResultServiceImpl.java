@@ -15,5 +15,20 @@ public class KeyResultServiceImpl implements KeyResultService{
 		return keyResultDAO.getKRForObj(objectiveId);
 	}
 
+	@Override
+	public int addKeyResult(KeyResultVO vo) {
+		return keyResultDAO.addKeyResult(vo);
+	}
+
+	@Override
+	public int removeKeyResult(int kid) {
+		return keyResultDAO.removeKeyResult(kid);
+	}
+
+	@Override
+	public int updateChecked(KeyResultVO vo) {
+		return keyResultDAO.updateChecked(vo);
+	}
+
 	
 }

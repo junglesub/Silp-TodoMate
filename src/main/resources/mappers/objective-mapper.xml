@@ -5,6 +5,9 @@
 		insert into BOARD (category, title, writer, content) values
 		(#{category} , #{title} , #{writer} , #{content})
 	</insert> -->
+	<insert id="addObjective">
+		insert into TM_objectives (projectId, otitle, label, assignee) values (#{projectId}, #{otitle}, #{label}, #{assignee})
+	</insert>
 	<select id="getObjectProjID" resultType="objective">
 		select * from TM_objectives where projectId=#{projectID}
 	</select>

@@ -16,5 +16,17 @@ public class KeyResultDAO {
 		List<KeyResultVO> list = sqlSession.selectList("KeyResult.getKeyResultForObj", objectiveId);
 		return list;
 	}
+	
+	public int addKeyResult(KeyResultVO vo) {
+		return sqlSession.insert("KeyResult.createKeyResult", vo);
+	}
+	
+	public int removeKeyResult(int kid) {
+		return sqlSession.delete("KeyResult.deleteKeyResult", kid);
+	}
+	
+	public int updateChecked(KeyResultVO vo) {
+		return sqlSession.update("KeyResult.updateChecked", vo);
+	}
 
 }

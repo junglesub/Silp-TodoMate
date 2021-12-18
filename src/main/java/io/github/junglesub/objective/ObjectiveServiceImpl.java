@@ -25,5 +25,10 @@ public class ObjectiveServiceImpl implements ObjectiveService{
 		return list;
 	}
 
+	@Override
+	public int addObjectiveVO(ObjectiveVO vo) {
+		return objectiveDAO.addObjective(vo);
+	}
+
 	
 }

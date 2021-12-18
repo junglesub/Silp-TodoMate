@@ -5,7 +5,16 @@
 		insert into BOARD (category, title, writer, content) values
 		(#{category} , #{title} , #{writer} , #{content})
 	</insert> -->
+	<insert id="createKeyResult">
+		insert into TM_keyresults (objectiveId, ktitle) values (#{objectiveId}, #{ktitle})
+	</insert>
 	<select id="getKeyResultForObj" resultType="keyresult">
 		select * from TM_keyresults where objectiveId=#{objectiveId}
 	</select>
+	<delete id="deleteKeyResult">
+		delete from TM_keyresults where kid=#{kid}
+	</delete>
+	<update id="updateChecked">
+		update TM_keyresults set completed=#{completed} where kid=#{kid}
+  	</update>
 </mapper>
