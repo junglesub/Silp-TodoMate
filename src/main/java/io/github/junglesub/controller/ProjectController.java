@@ -1,5 +1,7 @@
 package io.github.junglesub.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,8 +82,8 @@ public class ProjectController {
 	}
 	
 	@RequestMapping(value="addobjective", method = RequestMethod.POST)
-	public String addObjective(@PathVariable String id, ObjectiveVO vo) {
-		vo.setAssignee("홍길동");
+	public String addObjective(HttpSession session, @PathVariable String id, ObjectiveVO vo) {
+		vo.setAssignee((String) session.getAttribute("loginname"));
 		vo.setProjectId(id);
 		objectiveService.addObjectiveVO(vo);
 		return "redirect:/proj/"+id;

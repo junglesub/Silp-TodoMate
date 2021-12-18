@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import io.github.junglesub.project.ProjectVO;
 import io.github.junglesub.project.ProjectService;
+import io.github.junglesub.project.ProjectVO;
 
 /**
  * Handles requests for the application home page.
@@ -58,5 +61,29 @@ public class HomeController {
 		vo.setProjectId(randomId);
 		projectService.createProject(vo);
 		return "redirect:/proj/"+vo.getProjectId();
+	}
+	
+	@RequestMapping(value="/login", method = RequestMethod.POST)
+	public String login(
+			HttpSession session,
+			@RequestParam(required=true) String name,
+			@RequestParam(required=true) String projectcode
+			) {
+		
+		// Create user session
+		if(session.getAttribute("loginname") != null) {
+			session.removeAttribute("loginname");
+		}
+		session.setAttribute("loginname", name);
+		
+		return "redirect:/proj/" + projectcode;
+	}
+	
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public String logout(
+			HttpSession session
+			) {
+		session.invalidate();
+		return "redirect:/";
 	}
 }
