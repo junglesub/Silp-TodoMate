@@ -20,5 +20,9 @@ public class KeyResultDAO {
 	public int addKeyResult(KeyResultVO vo) {
 		return sqlSession.insert("KeyResult.createKeyResult", vo);
 	}
+	
+	public int removeKeyResult(int kid) {
+		return sqlSession.delete("KeyResult.deleteKeyResult", kid);
+	}
 
 }

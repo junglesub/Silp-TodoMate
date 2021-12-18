@@ -245,15 +245,18 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <% ProjectVO p =
                 <div class="key-results">
                   <ul class="list-group-flush">
                     <c:forEach items="${obj.getKeyResults()}" var="kresult">
-                      <li class="list-group-item">
-                        <input
-                          class="form-check-input me-1"
-                          type="checkbox"
-                          value=""
-                          aria-label="..."
-                          <c:if test="${kresult.getBCompleted()}">checked="checked"</c:if>
-                        />
-                        ${kresult.getKtitle()}
+                      <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div>
+                          <input
+                            class="form-check-input me-1"
+                            type="checkbox"
+                            value=""
+                            aria-label="..."
+                            <c:if test="${kresult.getBCompleted()}">checked="checked"</c:if>
+                          />
+                          ${kresult.getKtitle()}
+                        </div>
+                        <div><a href="./${ p.getProjectId() }/delKRes/${kresult.getKid()}">[X]</a></div>
                       </li>
                     </c:forEach>
                     <li class="list-group-item">

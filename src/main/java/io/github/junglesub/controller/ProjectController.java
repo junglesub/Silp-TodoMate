@@ -61,6 +61,12 @@ public class ProjectController {
 		return "redirect:/proj/"+id;
 	}
 	
+	@RequestMapping(value="delKRes/{keyid}", method = RequestMethod.GET)
+	public String deleteKeyResult(@PathVariable String id, @PathVariable int keyid) {
+		keyResultService.removeKeyResult(keyid);
+		return "redirect:/proj/"+id;
+	}
+	
 	@RequestMapping(value="addobjective", method = RequestMethod.POST)
 	public String addObjective(@PathVariable String id, ObjectiveVO vo) {
 		vo.setAssignee("김한동");
