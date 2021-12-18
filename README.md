@@ -4,6 +4,6 @@
 
 한동대학교 실전프로젝트 최종프로젝트
 
-https://todomate.herokuapp.com/ (느림)
+http://todomate.handong.us/ (조금 더 빠른 / 일본)
 
-~~ http://todomate.handong.us/ (버그가 많아 사용안함) ~~
+https://todomate.herokuapp.com/ (백업 / 미국)
