@@ -56,25 +56,35 @@ session="false" %>
   <body>
     <div class="position-absolute top-50 start-50 translate-middle">
       <h1 class="center-text">Todo Mate</h1>
-      <div class="inputs">
-        <input
-          class="form-control"
-          id="name"
-          placeholder="이름"
-          autocomplete="off"
-        />
-        <input
-          class="form-control"
-          id="project-code"
-          placeholder="프로젝트 코드"
-        />
-      </div>
-      <a href="./newproj" role="button" class="btn btn-secondary"
-        >프로젝트 생성</a
-      >
-      <button id="enterproj" class="btn btn-primary" onclick="submit(event)">
-        프로젝트 입장
-      </button>
+      <form action="login" method="post">
+        <div class="inputs">
+          <input
+            class="form-control"
+            id="name"
+            name="name"
+            placeholder="이름"
+            autocomplete="off"
+          />
+          <input
+            class="form-control"
+            name="projectcode"
+            id="projectcode"
+            placeholder="프로젝트 코드"
+            autocomplete="off"
+          />
+        </div>
+        <a href="./newproj" role="button" class="btn btn-secondary"
+          >프로젝트 생성</a
+        >
+        <button
+          type="submit"
+          id="enterproj"
+          class="btn btn-primary"
+          onclick="submit(event)"
+        >
+          프로젝트 입장
+        </button>
+      </form>
     </div>
 
     <script>
