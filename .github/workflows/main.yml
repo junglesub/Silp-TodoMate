@@ -47,4 +47,4 @@ jobs:
         env:
           SSH_KEY: ${{secrets.KEY}}
       - name: Upload WAR to remote Server
-        run: "scp -i key -oStrictHostKeyChecking=no silp-todomate.war ${{ secrets.USERNAME }}@todomate.handong.us:/opt/tomcat/webapps/silp-todomate.war"
+        run: "scp -i key -oStrictHostKeyChecking=no silp-todomate.war ${{ secrets.USERNAME }}@todomate.handong.us:/opt/tomcat/silp-todomate/ROOT.war"
