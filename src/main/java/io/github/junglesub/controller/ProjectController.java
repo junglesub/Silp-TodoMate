@@ -55,6 +55,12 @@ public class ProjectController {
 		return "project/viewproj";
 	}
 	
+	@RequestMapping(value="delProj", method = RequestMethod.GET)
+	public String deleteProject(@PathVariable String id) {
+		projectService.deleteProject(id);
+		return "redirect:/";
+	}
+	
 	@RequestMapping(value="addkresult", method = RequestMethod.POST)
 	public String addKeyResult(@PathVariable String id, KeyResultVO vo) {
 		keyResultService.addKeyResult(vo);
@@ -75,7 +81,7 @@ public class ProjectController {
 	
 	@RequestMapping(value="addobjective", method = RequestMethod.POST)
 	public String addObjective(@PathVariable String id, ObjectiveVO vo) {
-		vo.setAssignee("ÍπÄÌïúÎèô");
+		vo.setAssignee("±Ë«—µø");
 		vo.setProjectId(id);
 		objectiveService.addObjectiveVO(vo);
 		return "redirect:/proj/"+id;

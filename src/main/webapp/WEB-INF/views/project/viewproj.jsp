@@ -186,7 +186,7 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <% ProjectVO p =
             <button type="button" class="btn btn-outline-secondary">
               설정
             </button>
-            <button type="button" class="btn btn-outline-danger">삭제</button>
+            <a href="./${ p.getProjectId() }/delProj"><button type="button" class="btn btn-outline-danger">삭제</button></a>
           </div>
           <div class="top-right">
             <h4>김한동 님</h4>

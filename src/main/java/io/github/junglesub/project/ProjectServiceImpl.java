@@ -13,6 +13,11 @@ public class ProjectServiceImpl implements ProjectService {
 	public int createProject(ProjectVO project) {
 		return projectDAO.createProject(project);
 	}
+	
+	@Override
+	public int deleteProject(String projectId) {
+		return projectDAO.deleteProject(projectId);
+	}
 
 	@Override
 	public ProjectVO getProject(String projectId) {
