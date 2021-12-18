@@ -81,7 +81,7 @@ public class ProjectController {
 	
 	@RequestMapping(value="addobjective", method = RequestMethod.POST)
 	public String addObjective(@PathVariable String id, ObjectiveVO vo) {
-		vo.setAssignee("±Ë«—µø");
+		vo.setAssignee("ÌôçÍ∏∏Îèô");
 		vo.setProjectId(id);
 		objectiveService.addObjectiveVO(vo);
 		return "redirect:/proj/"+id;
