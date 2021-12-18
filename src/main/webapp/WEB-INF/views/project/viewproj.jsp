@@ -183,9 +183,9 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <% ProjectVO p =
         <div class="top">
           <div class="top-left">
             <h1><%=p.getTitle() %></h1>
-            <button type="button" class="btn btn-outline-secondary">
+            <a hred><button type="button" class="btn btn-outline-secondary">
               설정
-            </button>
+            </button></a>
             <a href="./${ p.getProjectId() }/delProj"><button type="button" class="btn btn-outline-danger">삭제</button></a>
           </div>
           <div class="top-right">
@@ -301,6 +301,11 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <% ProjectVO p =
     	  xhttp.open("GET", "./${ p.getProjectId() }/keycomplete?kid="+event.name+"&completed=" + (event.checked ? "1" : "0"));
     	  xhttp.send();
       }
+      
+      //function isOwner(event) {
+   	  //  if (${p.getOwner()} != ) return alert("Only the owner can do it");
+      //  window.location.href = "./${ p.getProjectId() }/edit" + code;
+      //}
     </script>
   </body>
 </html>
