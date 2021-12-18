@@ -183,9 +183,9 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <% ProjectVO p =
         <div class="top">
           <div class="top-left">
             <h1><%=p.getTitle() %></h1>
-            <a hred><button type="button" class="btn btn-outline-secondary">
+            <button type="button" class="btn btn-outline-secondary" onclick="isOwner(event)">
               설정
-            </button></a>
+            </button>
             <a href="./${ p.getProjectId() }/delProj"><button type="button" class="btn btn-outline-danger">삭제</button></a>
           </div>
           <div class="top-right">
@@ -302,10 +302,12 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <% ProjectVO p =
     	  xhttp.send();
       }
       
-      //function isOwner(event) {
-   	  //  if (${p.getOwner()} != ) return alert("Only the owner can do it");
-      //  window.location.href = "./${ p.getProjectId() }/edit" + code;
-      //}
+      function isOwner(event) {
+   	  	if (${p.getOwner()} != session.getAttribute("loginname")) return alert("Only the owner can do it");
+   	 const xhttp = new XMLHttpRequest();
+	  xhttp.open("GET", "./${ p.getProjectId() }/edit");
+	  xhttp.send();
+      }
     </script>
   </body>
 </html>

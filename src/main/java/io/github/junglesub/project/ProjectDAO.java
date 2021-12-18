@@ -16,6 +16,11 @@ public class ProjectDAO {
 		return result;
 	}
 	
+	public int updateProject(ProjectVO project) {
+		int result = sqlSession.update("Project.updateProject", project);
+		return result;
+	}
+	
 	public int deleteProject(String projectID) {
 		int result = sqlSession.delete("Project.deleteProject", projectID);
 		return result;
