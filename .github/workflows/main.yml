@@ -6,17 +6,18 @@ name: Build and Deploy
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [main]
+    branches: [main, cicd4]
     paths:
       - "src/**"
+      - ".github/workflows/main.yml"
 
 env:
   JAVA_VERSION: "1.8"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build-and-deploy:
-    name: Build and Deploy
+  deploy-heroku:
+    name: Deploy to Heroku
     runs-on: ubuntu-latest
     environment: dev
     steps:
@@ -38,7 +39,24 @@ jobs:
         run: heroku plugins:install java
       - name: Deploy WAR
         run: heroku war:deploy target/*.war --app todomate
-
+  deploy-personal:
+    name: Deploy to personal
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - uses: actions/checkout@master
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+      - name: Find and Replace DB URL
+        uses: jacobtomlinson/gha-find-replace@v2
+        with:
+          find: "jdbc:mysql://walab.handong.edu/PP1_22000462"
+          replace: "jdbc:mysql://localhost/PP1_22000462"
+          regex: false
+      - name: Build with Maven
+        run: mvn package --file pom.xml
       - name: Rename WAR
         run: mv target/*.war silp-todomate.war
       - name: Create Private Key File
