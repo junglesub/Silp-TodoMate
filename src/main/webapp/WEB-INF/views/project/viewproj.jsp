@@ -41,6 +41,10 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <% ProjectVO p =
         max-width: 1000px;
         margin: auto;
       }
+      
+      .top {
+      	margin-bottom: 1.5em;
+      }
 
       .main,
       .top,
@@ -86,6 +90,9 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <% ProjectVO p =
       }
       .key-results .list-group-flush {
         padding-left: 0;
+      }
+      .smaller-inp {
+      	max-width: 130px;
       }
     </style>
   </head>
@@ -188,6 +195,39 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <% ProjectVO p =
         </div>
         <div class="body">
           <div class="entries">
+	          <div class="entry-item">
+	              <div class="">
+	                <form action="./${ p.getProjectId() }/addobjective" method="post">
+	                  <div class="input-group">
+	                    <input
+	                      type="text"
+	                      class="form-control"
+	                      id="otitle"
+	                      name="otitle"
+	                      placeholder="New Objective"
+	                      aria-label="New Objective"
+	                      aria-describedby="basic-addon1"
+	                    />
+	                    <input
+	                      type="text"
+	                      class="form-control smaller-inp"
+	                      id="label"
+	                      name="label"
+	                      placeholder="label"
+	                      aria-label="label"
+	                      aria-describedby="basic-addon1"
+	                    />
+	                    <button
+	                      class="btn btn-outline-secondary"
+	                      type="submit"
+	                      id="button-addon1"
+	                    >
+	                      생성
+	                    </button>
+	                  </div>
+	                </form>
+	              </div>
+	            </div>
             <c:forEach items="${p.getObjectives()}" var="obj">
               <div class="entry-item">
                 <div class="objective">
@@ -243,6 +283,7 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <% ProjectVO p =
                 </div>
               </div>
             </c:forEach>
+
           </div>
         </div>
       </div>

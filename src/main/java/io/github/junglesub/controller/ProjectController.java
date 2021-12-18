@@ -13,6 +13,7 @@ import io.github.junglesub.exception.ResourceNotFoundException;
 import io.github.junglesub.keyresult.KeyResultService;
 import io.github.junglesub.keyresult.KeyResultVO;
 import io.github.junglesub.objective.ObjectiveService;
+import io.github.junglesub.objective.ObjectiveVO;
 import io.github.junglesub.project.ProjectService;
 import io.github.junglesub.project.ProjectVO;
 
@@ -57,6 +58,14 @@ public class ProjectController {
 	@RequestMapping(value="addkresult", method = RequestMethod.POST)
 	public String addKeyResult(@PathVariable String id, KeyResultVO vo) {
 		keyResultService.addKeyResult(vo);
+		return "redirect:/proj/"+id;
+	}
+	
+	@RequestMapping(value="addobjective", method = RequestMethod.POST)
+	public String addObjective(@PathVariable String id, ObjectiveVO vo) {
+		vo.setAssignee("김한동");
+		vo.setProjectId(id);
+		objectiveService.addObjectiveVO(vo);
 		return "redirect:/proj/"+id;
 	}
 
