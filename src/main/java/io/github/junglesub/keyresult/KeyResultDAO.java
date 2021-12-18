@@ -24,5 +24,9 @@ public class KeyResultDAO {
 	public int removeKeyResult(int kid) {
 		return sqlSession.delete("KeyResult.deleteKeyResult", kid);
 	}
+	
+	public int updateChecked(KeyResultVO vo) {
+		return sqlSession.update("KeyResult.updateChecked", vo);
+	}
 
 }

@@ -67,6 +67,12 @@ public class ProjectController {
 		return "redirect:/proj/"+id;
 	}
 	
+	@RequestMapping(value="keycomplete", method = RequestMethod.GET)
+	public String updateCompleted(@PathVariable String id, KeyResultVO vo) {
+		keyResultService.updateChecked(vo);
+		return "redirect:/proj/"+id;
+	}
+	
 	@RequestMapping(value="addobjective", method = RequestMethod.POST)
 	public String addObjective(@PathVariable String id, ObjectiveVO vo) {
 		vo.setAssignee("김한동");

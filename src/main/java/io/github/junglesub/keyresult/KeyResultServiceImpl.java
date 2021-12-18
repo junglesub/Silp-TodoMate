@@ -25,5 +25,10 @@ public class KeyResultServiceImpl implements KeyResultService{
 		return keyResultDAO.removeKeyResult(kid);
 	}
 
+	@Override
+	public int updateChecked(KeyResultVO vo) {
+		return keyResultDAO.updateChecked(vo);
+	}
+
 	
 }

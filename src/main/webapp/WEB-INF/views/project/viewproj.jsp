@@ -250,6 +250,9 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <% ProjectVO p =
                           <input
                             class="form-check-input me-1"
                             type="checkbox"
+                            name="${kresult.kid }"
+                            id="${kresult.kid }"
+                            onclick="handlecbox(this);"
                             value=""
                             aria-label="..."
                             <c:if test="${kresult.getBCompleted()}">checked="checked"</c:if>
@@ -291,5 +294,13 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <% ProjectVO p =
         </div>
       </div>
     </div>
+    <script>
+      function handlecbox(event) {
+    	  console.log(event.name, event.checked)
+    	  const xhttp = new XMLHttpRequest();
+    	  xhttp.open("GET", "./${ p.getProjectId() }/keycomplete?kid="+event.name+"&completed=" + (event.checked ? "1" : "0"));
+    	  xhttp.send();
+      }
+    </script>
   </body>
 </html>
