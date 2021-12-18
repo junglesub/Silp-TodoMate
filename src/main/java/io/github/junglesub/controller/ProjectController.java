@@ -57,6 +57,17 @@ public class ProjectController {
 		return "project/viewproj";
 	}
 	
+	@RequestMapping(value="edit", method = RequestMethod.GET)
+	public String editProject(@PathVariable String id) {
+		return "editprojectform";
+	}
+	
+	@RequestMapping(value = "edit/ok", method = RequestMethod.POST)
+	public String editProject(@PathVariable String id, ProjectVO vo) {
+		projectService.updateProject(vo);
+		return "redirect:/proj/"+vo.getProjectId();
+	}
+	
 	@RequestMapping(value="delProj", method = RequestMethod.GET)
 	public String deleteProject(@PathVariable String id) {
 		projectService.deleteProject(id);

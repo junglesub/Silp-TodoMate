@@ -183,7 +183,7 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <% ProjectVO p =
         <div class="top">
           <div class="top-left">
             <h1><%=p.getTitle() %></h1>
-            <button type="button" class="btn btn-outline-secondary">
+            <button type="button" class="btn btn-outline-secondary" onclick="isOwner(event)">
               설정
             </button>
             <a href="./${ p.getProjectId() }/delProj"><button type="button" class="btn btn-outline-danger">삭제</button></a>
@@ -300,6 +300,13 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <% ProjectVO p =
     	  const xhttp = new XMLHttpRequest();
     	  xhttp.open("GET", "./${ p.getProjectId() }/keycomplete?kid="+event.name+"&completed=" + (event.checked ? "1" : "0"));
     	  xhttp.send();
+      }
+      
+      function isOwner(event) {
+   	  	if (${p.getOwner()} != session.getAttribute("loginname")) return alert("Only the owner can do it");
+   	 const xhttp = new XMLHttpRequest();
+	  xhttp.open("GET", "./${ p.getProjectId() }/edit");
+	  xhttp.send();
       }
     </script>
   </body>
